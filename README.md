@@ -1,5 +1,8 @@
 # unit_x
 
+building flutter apk command : flutter build apk --split-per-abi
+
+
 A new Flutter project.
 
 ## Getting Started
