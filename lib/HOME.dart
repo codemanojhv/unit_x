@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:unit_x/drawer.dart';
 
 class HOME extends StatefulWidget {
   const HOME({Key? key}) : super(key: key);
@@ -36,32 +37,47 @@ class _HOMEState extends State<HOME> {
             ));
 
     return Scaffold(
+      drawer: MyDrawer(),
       backgroundColor: const Color.fromARGB(255, 185, 162, 226),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             floating: false,
             pinned: true,
-            expandedHeight: 130.0,
+            expandedHeight: 100.0, 
             backgroundColor: Colors.deepPurple[100],
             elevation: 10.0,
             primary: true,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(30),
+                bottom: Radius.circular(18),
               ),
             ),
+
+    
+              leading: Builder(
+                builder: (BuildContext context) {
+                  return IconButton(
+                    icon: const Icon(Icons.menu),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                  );
+                },
+              ),
+
+
             flexibleSpace:const  FlexibleSpaceBar(
-              titlePadding: EdgeInsets.zero, // Add this line
+               titlePadding: EdgeInsets.symmetric(horizontal: 72.0, vertical: 16.0),// Add this line
               title: Text(
                 'UNIT X', 
-                style: TextStyle(color: Colors.black,  fontSize: 20.0), 
+                style: TextStyle(color: Colors.black,  fontSize: 25.0), 
                 textAlign: TextAlign.center, 
-              ),
-              collapseMode: CollapseMode.parallax,
+              ), 
+           
               centerTitle: true,
             ), 
-            centerTitle: true,
+             
             actions: <Widget>[
               IconButton(
                 icon: const Icon(Icons.qr_code),
@@ -224,7 +240,7 @@ class _HOMEState extends State<HOME> {
               clipBehavior: Clip.antiAlias,
               child: Container(
                 height: 50,               
-                color: Color.fromARGB(255, 65, 188, 4),
+                color: const Color.fromARGB(255, 65, 188, 4),
               ),
              ),
              ),

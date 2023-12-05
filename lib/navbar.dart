@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
 import 'package:line_icons/line_icons.dart';
 import 'package:unit_x/home.dart';
 import 'package:unit_x/settings.dart';
@@ -9,6 +8,7 @@ class MyClass extends StatefulWidget {
   const MyClass({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyClassState createState() => _MyClassState();
 }
 
@@ -28,12 +28,12 @@ class _MyClassState extends State<MyClass> {
     Colors.red,
     Colors.green,
     Colors.deepOrange,
-    // Add more colors here
+    
   ];
 
   final _inactiveIcons = [
     LineIcons.home,
-    LineIcons.heart, 
+    LineIcons.heart,
     LineIcons.search,
     LineIcons.user,
     // Add more icons here
