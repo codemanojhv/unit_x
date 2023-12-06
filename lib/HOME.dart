@@ -15,9 +15,6 @@ class _HOMEState extends State<HOME> {
   @override
   Widget build(BuildContext context) {
 
-
-
-    
     final pages = List.generate(
         6,
         (index) => Container(
@@ -30,22 +27,23 @@ class _HOMEState extends State<HOME> {
                 height: 280,
                 child: Center(
                     child: Text(
-                  "Page $index",
-                  style: const TextStyle(color: Colors.indigo),
-                )),
+                    "Page $index",
+                    style: const TextStyle(color: Colors.indigo),
+                  )
+                ),
               ),
-            ));
-
+            )
+        );
     return Scaffold(
       drawer: MyDrawer(),
-      backgroundColor: const Color.fromARGB(255, 185, 162, 226),
+        backgroundColor: Theme.of(context).colorScheme.background,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             floating: false,
             pinned: true,
             expandedHeight: 100.0, 
-            backgroundColor: Colors.deepPurple[100],
+            backgroundColor: Theme.of(context).hintColor,
             elevation: 10.0,
             primary: true,
             shape: const RoundedRectangleBorder(
@@ -58,23 +56,28 @@ class _HOMEState extends State<HOME> {
               leading: Builder(
                 builder: (BuildContext context) {
                   return IconButton(
-                    icon: const Icon(Icons.menu),
+                    icon: const Icon(
+                        Icons.menu
+                      ),
                     onPressed: () {
                       Scaffold.of(context).openDrawer();
                     },
                   );
                 },
               ),
-
-
-            flexibleSpace:const  FlexibleSpaceBar(
-               titlePadding: EdgeInsets.symmetric(horizontal: 72.0, vertical: 16.0),// Add this line
+            flexibleSpace:  FlexibleSpaceBar(
+               titlePadding: const EdgeInsets.symmetric(horizontal: 72.0, vertical: 16.0),// Add this line
               title: Text(
                 'UNIT X', 
-                style: TextStyle(color: Colors.black,  fontSize: 25.0), 
+                style: TextStyle(
+
+                  color: Theme.of(context).brightness == Brightness.light
+                ? Theme.of(context).textTheme.bodyText1?.color
+                : Theme.of(context).textTheme.bodyText2?.color,
+                 fontSize: 25.0
+                 ), 
                 textAlign: TextAlign.center, 
               ), 
-           
               centerTitle: true,
             ), 
              
@@ -88,7 +91,6 @@ class _HOMEState extends State<HOME> {
             ],
           ),
 
-          
             SliverToBoxAdapter(
               child: SingleChildScrollView(
                 child: Column(
@@ -167,9 +169,8 @@ class _HOMEState extends State<HOME> {
             //      ),
             //    ),
 
-           
+           const SizedBox(height: 12.0),
                SmoothPageIndicator(
-               
                  controller: controller,
                  count: pages.length,
                  effect: CustomizableEffect(
@@ -194,7 +195,7 @@ class _HOMEState extends State<HOME> {
                        padding: 1,
                        width: 1,
                        color: Colors.black,
-                     ),
+                    ),
                     // borderRadius: const BorderRadius.only(
                     //     topLeft: Radius.circular(2),
                     //     topRight: Radius.circular(16),
@@ -202,22 +203,18 @@ class _HOMEState extends State<HOME> {
                     //     bottomRight: Radius.circular(2)
                     //     ),
                      borderRadius: BorderRadius.circular(16),
-                     verticalOffset: 0,
-                   ),
+                     verticalOffset: -3,
+                  ),
                    spacing: 6.0,
                    activeColorOverride: (i) => colors[i],
                    inActiveColorOverride: (i) => colors[i],
-                 ),
-               ),
-               const SizedBox(height: 32.0),
-            ],
-          ),
+                ),
               ),
-            ),
-         
-         
-            
-        
+               const SizedBox(height: 32.0),
+  ],
+    ),
+       ),
+          ),
 
            SliverFillRemaining(
             child: Padding(padding: const EdgeInsets.all(15.0),
@@ -228,10 +225,9 @@ class _HOMEState extends State<HOME> {
                 height: 200,
                 color: Colors.deepPurple,
               ),
-             ),
-             ),
             ),
-        
+          ),
+        ),
 
           SliverFillRemaining(
             child: Padding(padding: const EdgeInsets.all(15.0),
@@ -242,15 +238,15 @@ class _HOMEState extends State<HOME> {
                 height: 50,               
                 color: const Color.fromARGB(255, 65, 188, 4),
               ),
-             ),
-             ),
             ),
+          ),
+        ),
           const SliverFillRemaining(
             child: Center(
               child: Text('Scrollable content'),
             ),
           ),
-        ],
+      ],
       ),
     );
   }

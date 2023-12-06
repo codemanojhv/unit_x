@@ -15,10 +15,10 @@ class MyClass extends StatefulWidget {
 class _MyClassState extends State<MyClass> {
   int _selectedIndex = 0;
 
-  final _pages = const <Widget>[
-    HOME(),
+  final _pages =  <Widget>[
+    const HOME(),
     SettingsPage(),
-    HOME(),  
+    const HOME(),  
     SettingsPage(),
     // Add more pages here
   ]; 
@@ -57,15 +57,17 @@ class _MyClassState extends State<MyClass> {
         },
         child: _pages[_selectedIndex],
       ), 
-      bottomNavigationBar: GNav(
-        backgroundColor: Colors.white12 ,
+      bottomNavigationBar: GNav( 
+        backgroundColor:Theme.of(context).primaryColor,
         haptic: true,
         hoverColor: Colors.grey,
         tabBorderRadius: 12,
         curve: Curves.easeOutExpo,
         duration: const Duration(milliseconds: 500),
         gap: 8,
-        color: Colors.black87, 
+        color: Theme.of(context).brightness == Brightness.light
+                ? Theme.of(context).textTheme.bodyText1?.color
+                : Theme.of(context).textTheme.bodyText2?.color, 
         activeColor: _activeColors[_selectedIndex],
         iconSize: 24,
         tabBackgroundColor:_activeColors[_selectedIndex].withOpacity(0.1),

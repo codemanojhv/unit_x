@@ -1,54 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:unit_x/main.dart'; // Import your main.dart file
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+class SettingsPage extends StatefulWidget {
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
 
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    final _darkMode = (themeNotifier.themeMode == ThemeMode.dark);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text('Settings'),
       ),
       body: ListView(
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: [
-            ListTile(
-              title: const Text('Setting 1'),
-              trailing: Switch(
-                value: true,
-                onChanged: (bool value) {
-                  // Handle switch toggling
-                },
-              ),
-            ),
-            ListTile(
-              title: const Text('Setting 2'),
-              trailing: Checkbox(
-                value: true,
-                onChanged: (bool? value) {
-                  // Handle checkbox toggling
-                },
-              ),
-            ),
-            ListTile(
-              title: const Text('Setting 3'),
-              trailing: DropdownButton<String>(
-                value: 'Option 1',
-                onChanged: (String? newValue) {
-                  // Handle new value
-                },
-                items: <String>['Option 1', 'Option 2', 'Option 3']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-            ),
-          ],
-        ).toList(),
+        children: <Widget>[
+          SwitchListTile(
+            title: Text('Dark Mode'),
+            value: _darkMode,
+            onChanged: (bool value) {
+              setState(() {
+                themeNotifier.toggleTheme();
+              });
+            },
+          ),
+          // Add more settings here
+        ],
       ),
     );
   }
