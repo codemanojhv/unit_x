@@ -11,6 +11,7 @@ class HOME extends StatefulWidget {
 }
 
 class _HOMEState extends State<HOME> {
+  final List<String> _items = ['Item 1', 'Item 2', 'Item 3'];
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
   @override
   Widget build(BuildContext context) {
@@ -72,8 +73,8 @@ class _HOMEState extends State<HOME> {
                 style: TextStyle(
 
                   color: Theme.of(context).brightness == Brightness.light
-                ? Theme.of(context).textTheme.bodyText1?.color
-                : Theme.of(context).textTheme.bodyText2?.color,
+                ? Theme.of(context).textTheme.bodyLarge?.color
+                : Theme.of(context).textTheme.bodyMedium?.color,
                  fontSize: 25.0
                  ), 
                 textAlign: TextAlign.center, 
@@ -216,19 +217,35 @@ class _HOMEState extends State<HOME> {
        ),
           ),
 
-           SliverFillRemaining(
-            child: Padding(padding: const EdgeInsets.all(15.0),
-             child: ClipRRect(
-              borderRadius: BorderRadius.circular(50),
-              clipBehavior: Clip.antiAlias,
-              child: Container(
-                height: 200,
-                color: Colors.deepPurple,
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.amber,
+                  ),
+                  child: Column(
+                    children: _items.map((item) {
+                      return Dismissible(
+                        key: Key(item),
+                        onDismissed: (direction) {
+                          setState(() {
+                            _items.remove(item);
+                          });
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(SnackBar(content: Text('$item dismissed')));
+                        },
+                        child: ListTile(
+                          leading: const Icon(Icons.map),
+                          title: Text(item),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-
           SliverFillRemaining(
             child: Padding(padding: const EdgeInsets.all(15.0),
              child: ClipRRect(
@@ -248,6 +265,16 @@ class _HOMEState extends State<HOME> {
           ),
       ],
       ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            _items.add('Item ${_items.length + 1}');
+          });
+        },
+        child: const Icon(Icons.add),
+      ),
+
     );
   }
 }

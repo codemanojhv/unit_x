@@ -37,8 +37,9 @@ class MyApp extends StatelessWidget {
   ),
         textTheme: const TextTheme
         (
-          bodyText1: TextStyle(color: Colors.black),
-          bodyText2: TextStyle(color: Colors.black),
+          bodyLarge: TextStyle(color: Colors.black),
+          bodyMedium: TextStyle(color: Colors.black54),
+          bodySmall: TextStyle(color: Colors.black87)
         ),
   ),
       darkTheme: ThemeData.dark().copyWith(

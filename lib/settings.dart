@@ -11,17 +11,17 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
-    final _darkMode = (themeNotifier.themeMode == ThemeMode.dark);
+    final darkMode = (themeNotifier.themeMode == ThemeMode.dark);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
       ),
       body: ListView(
         children: <Widget>[
           SwitchListTile(
-            title: Text('Dark Mode'),
-            value: _darkMode,
+            title: const Text('Dark Mode'),
+            value: darkMode,
             onChanged: (bool value) {
               setState(() {
                 themeNotifier.toggleTheme();

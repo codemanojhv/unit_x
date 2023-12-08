@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unit_x/settings.dart';
 
 class MyDrawer extends StatelessWidget {
   
@@ -22,11 +23,14 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('Timetable'),
+            title: const Text('settings'),
             onTap: () {
-             
-            },
-          ),
+              Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SettingsPage()),
+          );
+        },
+      ),
  
            
         ],

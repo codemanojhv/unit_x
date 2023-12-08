@@ -24,7 +24,7 @@ class _MyClassState extends State<MyClass> {
   ]; 
 
   final _activeColors = [
-    Colors.blue,
+    Colors.blue ,  
     Colors.red,
     Colors.green,
     Colors.deepOrange,
@@ -66,8 +66,8 @@ class _MyClassState extends State<MyClass> {
         duration: const Duration(milliseconds: 500),
         gap: 8,
         color: Theme.of(context).brightness == Brightness.light
-                ? Theme.of(context).textTheme.bodyText1?.color
-                : Theme.of(context).textTheme.bodyText2?.color, 
+                ? Theme.of(context).textTheme.bodyLarge?.color
+                : Theme.of(context).textTheme.bodyMedium?.color, 
         activeColor: _activeColors[_selectedIndex],
         iconSize: 24,
         tabBackgroundColor:_activeColors[_selectedIndex].withOpacity(0.1),
