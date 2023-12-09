@@ -3,7 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:unit_x/main.dart'; // Import your main.dart file
 
 class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _SettingsPageState createState() => _SettingsPageState();
 }
 

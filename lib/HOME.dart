@@ -36,7 +36,7 @@ class _HOMEState extends State<HOME> {
             )
         );
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
         backgroundColor: Theme.of(context).colorScheme.background,
       body: CustomScrollView(
         slivers: <Widget>[

@@ -17,9 +17,9 @@ class _MyClassState extends State<MyClass> {
 
   final _pages =  <Widget>[
     const HOME(),
-    SettingsPage(),
+    const SettingsPage(),
     const HOME(),  
-    SettingsPage(),
+    const SettingsPage(),
     // Add more pages here
   ]; 
 
